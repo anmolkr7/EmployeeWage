@@ -7,30 +7,34 @@ public class Main {
         int WAGE_PER_HOUR=20;
         int FULL_DAY_HOURS=8;
         int PART_TIME_HOURS=8;
+        int WORKING_DAYS=20;
 
-        //Generates 0,1,2 to replicate absent,present,part-time
-        int empCheck=(int)(Math.floor(Math.random()*10)%3);
+        int monthlyWage=0;
 
-        int empHours;
+        for (int day=1;day<=WORKING_DAYS;day++){
+            //Generates 0,1,2 to replicate absent,present,part-time
+            int empCheck = (int) (Math.floor(Math.random() * 10) % 3);
 
-        //Implementing wage calculation using switch case
-        switch(empCheck){
-            case 1:
-                System.out.println("Employee is Present Full-Time");
-                empHours=FULL_DAY_HOURS;
-                break;
+            int empHours;
 
-            case 2:
-                System.out.println("Employee is Present Part-Time");
-                empHours=PART_TIME_HOURS;
-                break;
+            //Implementing wage calculation using switch case
+            switch(empCheck){
+                case 1:
+                    empHours = FULL_DAY_HOURS;
+                    break;
 
-            default:
-                System.out.println("Employee is Absent");
-                empHours=0;
+                case 2:
+                    empHours = PART_TIME_HOURS;
+                    break;
+
+                default:
+                    empHours = 0;
+            }
+            //Calculating daily wage
+            int dailyWage=empHours*WAGE_PER_HOUR;
+            //Calculating monthly wage
+            monthlyWage+=dailyWage;
         }
-        //Calculating daily wage
-        int dailyWage=empHours*WAGE_PER_HOUR;
-        System.out.println("Daily Employee Wage: "+dailyWage);
+        System.out.println("Monthly Employee Wage: " +monthlyWage);
     }
 }
