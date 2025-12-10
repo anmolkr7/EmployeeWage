@@ -5,36 +5,38 @@ public class Main {
         int IS_FULL_TIME=1;
         int IS_PART_TIME=2;
         int WAGE_PER_HOUR=20;
-        int FULL_DAY_HOURS=8;
-        int PART_TIME_HOURS=8;
-        int WORKING_DAYS=20;
 
-        int monthlyWage=0;
+        //To track total working hours,days and accumulated wage
+        int totalHours=0;
+        int totalDays=0;
+        int totalWage=0;
 
-        for (int day=1;day<=WORKING_DAYS;day++){
-            //Generates 0,1,2 to replicate absent,present,part-time
-            int empCheck = (int) (Math.floor(Math.random() * 10) % 3);
-
+        // Continue calculating wages until 100 hours OR 20 days limit is reached
+        while(totalHours<100 && totalDays<20){
+            totalDays++;
+            // Generate attendance: 0 = Absent, 1 = Full-time, 2 = Part-time
+            int empCheck=(int)(Math.floor(Math.random()*10)%3);
             int empHours;
-
-            //Implementing wage calculation using switch case
+            // Determines working hours based on attendance
             switch(empCheck){
                 case 1:
-                    empHours = FULL_DAY_HOURS;
+                    empHours=8;
                     break;
 
                 case 2:
-                    empHours = PART_TIME_HOURS;
+                    empHours=8;
                     break;
 
                 default:
-                    empHours = 0;
+                    empHours=0;
             }
-            //Calculating daily wage
-            int dailyWage=empHours*WAGE_PER_HOUR;
-            //Calculating monthly wage
-            monthlyWage+=dailyWage;
+            // Update total hours and total wage
+            totalHours+=empHours;
+            totalWage+=empHours*WAGE_PER_HOUR;
         }
-        System.out.println("Monthly Employee Wage: " +monthlyWage);
+        //Displaying output
+        System.out.println("Total Days="+totalDays);
+        System.out.println("Total Hours="+totalHours);
+        System.out.println("Total Wage="+totalWage);
     }
 }
