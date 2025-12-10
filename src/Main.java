@@ -11,21 +11,26 @@ public class Main {
         //Generates 0,1,2 to replicate absent,present,part-time
         int empCheck=(int)(Math.floor(Math.random()*10)%3);
 
-        int empHours = 0;
+        int empHours;
 
-        //Applying condition check to mark attendance
-        if (empCheck==IS_FULL_TIME) {
-            System.out.println("Employee is Present Full Time");
-            empHours=FULL_DAY_HOURS;
-        } else if(empCheck==IS_PART_TIME){
-            System.out.println("Employee is Present Part-time");
-            empHours=PART_TIME_HOURS;
+        //Implementing wage calculation using switch case
+        switch(empCheck){
+            case 1:
+                System.out.println("Employee is Present Full-Time");
+                empHours=FULL_DAY_HOURS;
+                break;
+
+            case 2:
+                System.out.println("Employee is Present Part-Time");
+                empHours=PART_TIME_HOURS;
+                break;
+
+            default:
+                System.out.println("Employee is Absent");
+                empHours=0;
         }
-        else{
-            System.out.println("Employee is Absent");
-        }
-        // Calculating daily wage
-        int dailyWage=WAGE_PER_HOUR*empHours;
+        //Calculating daily wage
+        int dailyWage=empHours*WAGE_PER_HOUR;
         System.out.println("Daily Employee Wage: "+dailyWage);
     }
 }
