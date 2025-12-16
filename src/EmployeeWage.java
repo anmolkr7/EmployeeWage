@@ -1,13 +1,27 @@
 public class EmployeeWage {
 
-    public static void computeWage(String company, int wagePerHour, int maxDays, int maxHours) {
+    private String company;
+    private int wagePerHour;
+    private int maxDays;
+    private int maxHours;
+    private int totalWage;
 
-        System.out.println("\nCompany: "+company);
+    //Constructor to initialise the class variables
+    public EmployeeWage(String company, int wagePerHour, int maxDays, int maxHours) {
+        this.company = company;
+        this.wagePerHour = wagePerHour;
+        this.maxDays = maxDays;
+        this.maxHours = maxHours;
+        this.totalWage = 0;
+    }
+
+    public void computeWage() {
+
+        System.out.println("\nCompany: " + company);
 
         // To track total working hours,days and accumulated wage
         int totalHours = 0;
         int totalDays = 0;
-        int totalWage = 0;
 
         // Continue calculating wages until 100 hours OR 20 days limit is reached
         while (totalHours < maxHours && totalDays < maxDays) {
@@ -41,5 +55,14 @@ public class EmployeeWage {
         System.out.println("Total Days=" + totalDays);
         System.out.println("Total Hours=" + totalHours);
         System.out.println("Total Wage=" + totalWage);
+    }
+
+    public int getTotalWage() {
+        return totalWage;
+    }
+
+    @Override
+    public String toString() {
+        return "Total Wage for " + company + " = " + totalWage;
     }
 }
