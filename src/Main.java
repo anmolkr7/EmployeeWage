@@ -10,5 +10,9 @@ public class Main {
         employeeWage.addCompany("Dmart", 18, 26, 140);
 
         employeeWage.computeWages();
+
+        System.out.println("\nQueried Total Wage:");
+        System.out.println("TCS -> " + employeeWage.getTotalWageByCompany("TCS"));
+        System.out.println("Infosys -> " + employeeWage.getTotalWageByCompany("Infosys"));
     }
 }
