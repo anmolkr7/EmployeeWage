@@ -22,6 +22,7 @@ public class EmployeeWage implements IEmployeeWage {
         for (CompanyEmpWage company : companies) {
             computeWage(company);
             System.out.println("Total Wage for " + company.company + " = " + company.totalWage);
+            System.out.println("Daily Wages: " + company.dailyWages);
         }
     }
 
@@ -56,9 +57,23 @@ public class EmployeeWage implements IEmployeeWage {
             }
             int dailyWage = empHours * company.wagePerHour;
 
+            //Store daily wage
+            company.dailyWages.add(dailyWage);
+
             // Update total hours and total wage
             totalHours += empHours;
             company.totalWage += dailyWage;
         }
+    }
+
+    //Query total wage by company using ArrayList
+    @Override
+    public int getTotalWageByCompany(String companyName) {
+        for (CompanyEmpWage company : companies) {
+            if (company.company.equals(companyName)) {
+                return company.totalWage;
+            }
+        }
+        return 0; // company not found
     }
 }

@@ -11,11 +11,15 @@ public class CompanyEmpWage {
     //Stores total wage for the company
     public int totalWage;
 
+    //Store daily wages
+    public ArrayList<Integer> dailyWages;
+
     public CompanyEmpWage(String company, int wagePerHour, int maxDays, int maxHours) {
         this.company = company;
         this.wagePerHour = wagePerHour;
         this.maxDays = maxDays;
         this.maxHours = maxHours;
         this.totalWage = 0;
+        this.dailyWages = new ArrayList<>();
     }
 }
