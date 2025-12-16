@@ -1,4 +1,4 @@
-public class EmployeeWage {
+public class EmployeeWage implements IEmployeeWage {
     // Keeps track of number of companies added
     private int companyCount = 0;
 
@@ -11,12 +11,14 @@ public class EmployeeWage {
     }
 
     //Add company details into the array
+    @Override
     public void addCompany(String company, int wagePerHour, int maxDays, int maxHours) {
         companies[companyCount++] =
                 new CompanyEmpWage(company, wagePerHour, maxDays, maxHours);
     }
 
     //Compute wages for all companies
+    @Override
     public void computeWages() {
         for (int i = 0; i < companyCount; i++) {
             computeWage(companies[i]);
@@ -24,6 +26,7 @@ public class EmployeeWage {
         }
     }
 
+    //Wage computation logic reused for each company
     private void computeWage(CompanyEmpWage company) {
 
         // To track total working hours,days and accumulated wage
