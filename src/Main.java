@@ -3,8 +3,7 @@ public class Main {
 
         System.out.println("Welcome to Employee Wage Computation Program on Master Branch");
 
-        //Programming to interface, not implementation
-        IEmployeeWage employeeWage = new EmployeeWage(5);
+        IEmployeeWage employeeWage = new EmployeeWage();
 
         employeeWage.addCompany("TCS", 20, 20, 100);
         employeeWage.addCompany("Infosys", 25, 22, 120);

@@ -1,28 +1,27 @@
+import java.util.ArrayList;
+
 public class EmployeeWage implements IEmployeeWage {
-    // Keeps track of number of companies added
-    private int companyCount = 0;
 
-    // Array to store multiple CompanyEmpWage objects
-    private CompanyEmpWage[] companies;
+    // ArrayList to store multiple CompanyEmpWage objects
+    private ArrayList<CompanyEmpWage> companies;
 
-    // Constructor to initialize company array size
-    public EmployeeWage(int size) {
-        companies = new CompanyEmpWage[size];
+    // Constructor to initialize new array list
+    public EmployeeWage() {
+        companies = new ArrayList<>();
     }
 
-    //Add company details into the array
+    //Add company details into the array list
     @Override
     public void addCompany(String company, int wagePerHour, int maxDays, int maxHours) {
-        companies[companyCount++] =
-                new CompanyEmpWage(company, wagePerHour, maxDays, maxHours);
+        companies.add(new CompanyEmpWage(company, wagePerHour, maxDays, maxHours));
     }
 
     //Compute wages for all companies
     @Override
     public void computeWages() {
-        for (int i = 0; i < companyCount; i++) {
-            computeWage(companies[i]);
-            System.out.println("Total Wage for " + companies[i].company + " = " + companies[i].totalWage);
+        for (CompanyEmpWage company : companies) {
+            computeWage(company);
+            System.out.println("Total Wage for " + company.company + " = " + company.totalWage);
         }
     }
 
@@ -55,10 +54,11 @@ public class EmployeeWage implements IEmployeeWage {
                 default:
                     empHours = 0;
             }
+            int dailyWage = empHours * company.wagePerHour;
 
             // Update total hours and total wage
             totalHours += empHours;
-            company.totalWage += empHours * company.wagePerHour;
+            company.totalWage += dailyWage;
         }
     }
 }
