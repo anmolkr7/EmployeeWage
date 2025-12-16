@@ -3,16 +3,12 @@ public class Main {
 
         System.out.println("Welcome to Employee Wage Computation Program on Master Branch");
 
-        EmployeeWage tcs = new EmployeeWage("TCS", 20, 20, 100);
-        tcs.computeWage();
-        System.out.println(tcs);
+        EmployeeWage employeeWage = new EmployeeWage(5);
 
-        EmployeeWage infosys = new EmployeeWage("Infosys", 25, 22, 120);
-        infosys.computeWage();
-        System.out.println(infosys);
+        employeeWage.addCompany("TCS", 20, 20, 100);
+        employeeWage.addCompany("Infosys", 25, 22, 120);
+        employeeWage.addCompany("Dmart", 18, 26, 140);
 
-        EmployeeWage dmart = new EmployeeWage("Dmart", 18, 26, 140);
-        dmart.computeWage();
-        System.out.println(dmart);
+        employeeWage.computeWages();
     }
 }

@@ -1,30 +1,37 @@
 public class EmployeeWage {
+    // Keeps track of number of companies added
+    private int companyCount = 0;
 
-    private String company;
-    private int wagePerHour;
-    private int maxDays;
-    private int maxHours;
-    private int totalWage;
+    // Array to store multiple CompanyEmpWage objects
+    private CompanyEmpWage[] companies;
 
-    //Constructor to initialise the class variables
-    public EmployeeWage(String company, int wagePerHour, int maxDays, int maxHours) {
-        this.company = company;
-        this.wagePerHour = wagePerHour;
-        this.maxDays = maxDays;
-        this.maxHours = maxHours;
-        this.totalWage = 0;
+    // Constructor to initialize company array size
+    public EmployeeWage(int size) {
+        companies = new CompanyEmpWage[size];
     }
 
-    public void computeWage() {
+    //Add company details into the array
+    public void addCompany(String company, int wagePerHour, int maxDays, int maxHours) {
+        companies[companyCount++] =
+                new CompanyEmpWage(company, wagePerHour, maxDays, maxHours);
+    }
 
-        System.out.println("\nCompany: " + company);
+    //Compute wages for all companies
+    public void computeWages() {
+        for (int i = 0; i < companyCount; i++) {
+            computeWage(companies[i]);
+            System.out.println("Total Wage for " + companies[i].company + " = " + companies[i].totalWage);
+        }
+    }
+
+    private void computeWage(CompanyEmpWage company) {
 
         // To track total working hours,days and accumulated wage
         int totalHours = 0;
         int totalDays = 0;
 
         // Continue calculating wages until 100 hours OR 20 days limit is reached
-        while (totalHours < maxHours && totalDays < maxDays) {
+        while (totalHours < company.maxHours && totalDays < company.maxDays) {
             totalDays++;
 
             // Generate attendance: 0 = Absent, 1 = Full-time, 2 = Part-time
@@ -48,21 +55,7 @@ public class EmployeeWage {
 
             // Update total hours and total wage
             totalHours += empHours;
-            totalWage += empHours * wagePerHour;
+            company.totalWage += empHours * company.wagePerHour;
         }
-
-        // Displaying output
-        System.out.println("Total Days=" + totalDays);
-        System.out.println("Total Hours=" + totalHours);
-        System.out.println("Total Wage=" + totalWage);
-    }
-
-    public int getTotalWage() {
-        return totalWage;
-    }
-
-    @Override
-    public String toString() {
-        return "Total Wage for " + company + " = " + totalWage;
     }
 }
